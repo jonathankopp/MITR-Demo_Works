@@ -6,10 +6,27 @@ SET NAMES 'utf8';
 /*==============================================================*/
 DROP TABLE IF EXISTS jobs;
 CREATE TABLE jobs (
-  JobName       VARCHAR(40)     NOT NULL,
-  DateReq       INT(5)          DEFAULT NULL,
-  DateRec       INT(5)          DEFAULT NULL,
-  PRIMARY KEY (JobName)
+  `JobName`       VARCHAR(40)     NOT NULL,
+  `Address`       varchar(60)     NOT NULL,
+  `City`         varchar(15)     NOT NULL,
+  `PostalCode`    int(10)         NOT NULL,
+  `PGL Insurance WC/Liab/Dis Ins` boolean NOT NUll,
+  `Rodent Control Letter` boolean NOT NUll,
+  `Gas Cut Off boolean` NOT NUll,
+  `Water/Sewer Cut Off` boolean NOT NUll,
+  `SRO Intake Form` boolean NOT NUll,
+  `10 Day Notice Letter` boolean NOT NUll,
+  `Community Board Notice` boolean NOT NUll,
+  `Asbestos Report ACP5/AP21` boolean NOT NUll,
+  `Photographs` boolean NOT NUll,
+  `Landmark Letter` boolean NOT NUll,
+  `PW-1 Application` boolean NOT NUll,
+  `PW-2 App. Demo/Fence` boolean NOT NUll,
+  `Blank Check DOB Filing/Perimit` boolean NOT NUll,
+  `TR1/DS1 from Engineer` boolean NOT NUll,
+  `Tax Map` boolean NOT NUll,
+  `Fence Filing` boolean NOT NUll,
+  PRIMARY KEY (`JobName`)
 );
 
 
@@ -18,39 +35,16 @@ CREATE TABLE jobs (
 /*==============================================================*/
 DROP TABLE IF EXISTS customers;
 CREATE TABLE customers (
-  CustomerID    INT(5)          NOT NULL,
-  CompanyName   varchar(40)     NOT NULL,
-  ContactName   varchar(30)     DEFAULT NULL,
-  ContactTitle  varchar(30)     DEFAULT NULL,
-  Address       varchar(60)     DEFAULT NULL,
-  City          varchar(15)     DEFAULT NULL,
-  Region        varchar(15)     DEFAULT NULL,
-  PostalCode    varchar(10)     DEFAULT NULL,
-  Country       varchar(15)     DEFAULT NULL,
-  Phone         varchar(24)     DEFAULT NULL,
-  Fax           varchar(24)     DEFAULT NULL,
-  PRIMARY KEY (CustomerID),
-  KEY City (City),
-  KEY CompanyName (CompanyName),
-  KEY PostalCode (PostalCode),
-  KEY Region (Region)
+  `CustomerID`    INT(5)          unsigned NOT NULL AUTO_INCREMENT,
+  `CompanyName`   varchar(40)     NOT NULL,
+  `ContactName`   varchar(30)     NOT NULL,
+  `ContactTitle`  varchar(30)     ,
+  `Address`       varchar(60)     NOT NULL,
+  `City`         varchar(15)     NOT NULL,
+  `PostalCode`    int(5)         NOT NULL,
+  `Phone`         int(11)     NOT NULL,
+  PRIMARY KEY (`CustomerID`),
+  KEY `City` (`City`),
+  KEY `CompanyName` (`CompanyName`),
+  KEY `PostalCode` (`PostalCode`)
 );
-
-
-INSERT INTO jobs (JobName)
-VALUES('PGL Insurance WC/Liab/Dis Ins'),
-('Rodent Control Letter'),
-('Gas Cut Off'),
-('Water/Sewer Cut Off'),
-('SRO Intake Form'),
-('10 Day Notice Letter'),
-('Community Board Notice'),
-('Asbestos Report ACP5/AP21'),
-('Photographs'),
-('Landmark Letter'),
-('PW-1 Application'),
-('PW-2 App. Demo/Fence'),
-('Blank Check DOB Filing/Perimit'),
-('TR1/DS1 from Engineer'),
-('Tax Map'),
-('Fence Filing');
