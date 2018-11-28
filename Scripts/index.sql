@@ -6,13 +6,14 @@ SET NAMES 'utf8';
 /*==============================================================*/
 DROP TABLE IF EXISTS jobs;
 CREATE TABLE jobs (
-  `JobName`       VARCHAR(40)     NOT NULL,
+  `FirstName`       VARCHAR(40)     NOT NULL,
+  `LastName`   varchar(30)     NOT NULL,
   `Address`       varchar(60)     NOT NULL,
   `City`         varchar(15)     NOT NULL,
   `PostalCode`    int(10)         NOT NULL,
   `PGL Insurance WC/Liab/Dis Ins` boolean NOT NUll,
   `Rodent Control Letter` boolean NOT NUll,
-  `Gas Cut Off boolean` NOT NUll,
+  `Gas Cut Off boolean` boolean NOT NUll,
   `Water/Sewer Cut Off` boolean NOT NUll,
   `SRO Intake Form` boolean NOT NUll,
   `10 Day Notice Letter` boolean NOT NUll,
@@ -26,8 +27,8 @@ CREATE TABLE jobs (
   `TR1/DS1 from Engineer` boolean NOT NUll,
   `Tax Map` boolean NOT NUll,
   `Fence Filing` boolean NOT NUll,
-  PRIMARY KEY (`JobName`)
-);
+  `CustomerID`    INT(5)   NOT NULL
+  );
 
 
 /*==============================================================*/
@@ -36,15 +37,12 @@ CREATE TABLE jobs (
 DROP TABLE IF EXISTS customers;
 CREATE TABLE customers (
   `CustomerID`    INT(5)          unsigned NOT NULL AUTO_INCREMENT,
-  `CompanyName`   varchar(40)     NOT NULL,
-  `ContactName`   varchar(30)     NOT NULL,
+  `FirstName`   varchar(40)     NOT NULL,
+  `LastName`   varchar(30)     NOT NULL,
   `ContactTitle`  varchar(30)     ,
   `Address`       varchar(60)     NOT NULL,
   `City`         varchar(15)     NOT NULL,
   `PostalCode`    int(5)         NOT NULL,
   `Phone`         int(11)     NOT NULL,
   PRIMARY KEY (`CustomerID`),
-  KEY `City` (`City`),
-  KEY `CompanyName` (`CompanyName`),
-  KEY `PostalCode` (`PostalCode`)
 );

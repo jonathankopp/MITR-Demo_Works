@@ -1,0 +1,104 @@
+
+body{
+	background-color: lightcyan;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 30px;
+    border-bottom: 6px solid #333;
+    width:100%;
+    margin: 0px;
+    background-color: blue;
+    color: white;
+    margin-top: 0;
+    padding-top: 0;
+    height: 88px;
+}
+
+form{
+    padding-top: 15px;
+	padding-bottom: 5px;
+}
+
+legend{
+	font-weight: bold;
+}
+
+.field{
+	font-weight: bold;
+}
+
+.value{
+	border-bottom: 5px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    
+}
+
+.tooltip .bottomtooltiptext {
+    visibility: hidden;
+    
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+    
+    /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+    opacity: 0;
+    transition: opacity 1.75s;
+}
+
+.tooltip .righttooltiptext{
+	visibility: hidden;
+    
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    left: 115%;
+    width: 425px;
+    
+    margin-left: -60px;
+    
+    /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip:hover .righttooltiptext {
+    visibility: visible;
+    opacity: 0.75;
+}
+
+.tooltip:hover .bottomtooltiptext {
+    visibility: visible;
+    opacity: 0.35;
+}
+
+a {
+    text-align: center;
+    font-size: 1.5em;
+    color: black;
+}
+
+a:hover {
+    color: blue;
+}
+
+h4 {
+    text-align: center;
+}

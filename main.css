@@ -1,0 +1,109 @@
+.active{
+    background: darkred;
+}
+
+.navbar{
+    border-radius: 0;
+}
+
+.right {
+    margin-top: -25px;
+}
+
+.alert {
+    padding: 8px;
+}
+
+hr {
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.center{
+    width: 50%;
+}
+
+.status{
+    list-style: none;
+    margin-left: -40px;
+}
+
+.navbar-brand{
+    height: 70px;
+    width: auto;
+    margin-top: -10px;
+}
+
+.dropdown.dropdown-lg .dropdown-menu {
+    margin-top: -1px;
+    padding: 6px 20px;
+}
+.input-group-btn .btn-group {
+    display: flex !important;
+}
+.btn-group .btn {
+    border-radius: 0;
+    margin-left: -1px;
+}
+.btn-group .btn:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.btn-group .form-horizontal .btn[type="submit"] {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0;
+}
+.form-group .form-control:last-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+#directoryListing {
+    margin-top: 15px;
+}
+
+.directory-card {
+    background-color: #EEE;
+    height: 129px;
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 10px 15px;
+}
+
+.directory-card h4 {
+    margin-bottom: 6px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.directory-card p {
+    margin-bottom: 3px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.directory-card a.email {
+    font-size: 9pt;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@media screen and (min-width: 768px) {
+    #adv-search {
+        width: 500px;
+        margin: 0 auto;
+    }
+    .dropdown.dropdown-lg {
+        position: static !important;
+    }
+    .dropdown.dropdown-lg .dropdown-menu {
+        min-width: 500px;
+    }
+}
