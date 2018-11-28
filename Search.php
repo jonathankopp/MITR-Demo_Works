@@ -42,7 +42,7 @@
                     <section>
                         <form name="Search" action="Search.php" method="POST">
                             <fieldset> 
-                                <legend>Add Job</legend>
+                                <legend>Search Client</legend>
                                 <div class="formData">
                                     <label class="field">Search</label>
                                     <div class="value">
