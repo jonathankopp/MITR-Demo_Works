@@ -82,8 +82,9 @@
 
                             //DOESNT WORK
                             $res = $dbh->prepare("
-                            SELECT customers.CustomerID,`FirstName`, `LastName` FROM customers INNER JOIN jobs on customers.CustomerID = jobs.CustomerID WHERE
+                            SELECT customers.CustomerID, customers.`FirstName`, customers.`LastName` FROM customers INNER JOIN jobs on customers.CustomerID = jobs.CustomerID WHERE
                                 Address='".$_POST['SearchQuery']."'");
+                           
 
                             $res->execute();
                             while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
