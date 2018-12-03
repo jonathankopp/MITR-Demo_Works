@@ -80,7 +80,25 @@
 <div class="container">
     <div class="row">
         <div class="col-lg middle">
-            <h2>Check Off Requirements</h2>
+        <?php
+                if(!(isset($_GET['ID']))){
+                    echo "<h1>ERROR</h1>";
+                }else{
+                    $dbh = new PDO('mysql:host=localhost;dbname=Demo_Works', "root", "password");
+                    $res = $dbh->prepare("
+                    SELECT * FROM `jobs`
+                        WHERE jID='".$_GET['ID']."'");
+    
+                    $res->execute();
+                    
+                    while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                        $disp=$row['Address'].", ".$row['City']." | Block Lot: ".$row['Block Lot'];
+                        echo "<h2>".$disp."</h2>";
+                    }
+                    $dbh = null;
+                }
+                
+            ?>
             
             <h3>Check Off List</h3>
             <div class=accordion>
@@ -114,7 +132,7 @@
                                             $res = $dbh->prepare("
                                             SELECT * FROM `Check_Off`
                                                 WHERE jID='".$_GET['ID']."'");
-
+                            
                                             $res->execute();
                                             while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
                                                

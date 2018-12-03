@@ -1,3 +1,7 @@
+<?php 
+	session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +40,29 @@
 <div class="container">
     <div class="row">
         <div class="col-lg middle">
-            <h2>Client</h2>
+            <?php
+                if(!(isset($_GET['ID']))){
+                    echo "<h1>ERROR</h1>";
+                }else{
+                    $dbh = new PDO('mysql:host=localhost;dbname=Demo_Works', "root", "password");
+                    $res = $dbh->prepare("
+                    SELECT `FirstName`,`LastName`,`ContactTitle` FROM `customers`
+                        WHERE CustomerID='".$_GET['ID']."'");
+    
+                    $res->execute();
+                    
+                    while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                        if($row['ContactTitle']!=NULL){
+                            $disp=$row['ContactTitle'];
+                        }else{
+                            $disp=$row['FirstName']." ".$row['LastName'];
+                        }
+                        echo "<h2>".$disp."</h2>";
+                    }
+                    $dbh = null;
+                }
+                
+            ?>
             
             <h3>Client Information</h3>
             <div class=accordion>
