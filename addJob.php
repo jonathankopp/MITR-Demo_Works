@@ -51,7 +51,6 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index.php">Home</a></li>
                         <li><a href="Search.php">Search</a></li>
-                        <li><a href="addJob.php">Add Job</a></li>
                         <li><a href="AddClient.php">Add Client</a></li>
                     </ul>
                 </div>
@@ -62,21 +61,12 @@
             <div class="row">
                 <div class="col-8">
                     <section>
-                        <form name="Add_Job" action="addJob.php" method="POST">
+                        <?php
+                        echo '
+                        <form name="Add_Job" action="Client.php?ID='.$_GET['ID'].'" method="POST">
                             <fieldset> 
                                 <legend>Add Job</legend>
                                 <div class="formData">
-                                     
-                                    <label class="field">Client First name</label>
-                                    <div class="value">
-                                        <input type="text" size="60" value="" name="ClientFName"  class="form-control" placeholder = "Johnson"/>
-                                    </div>
-
-                                    <label class="field">Client Last name</label>
-                                    <div class="value">
-                                        <input type="text" size="60" value="" name="ClientLName"  class="form-control" placeholder = "Smith"/>
-                                    </div>
-
                                     <label class="field">Address</label>
                                     <div class="value">
                                         <input type="text" size="60" value="" name="Address"  class="form-control" placeholder = "36 Leg St"/>
@@ -86,15 +76,28 @@
                                     <div class="value">
                                         <input type="text" size="60" value="" name="City"  class="form-control" placeholder = "Great Neck"/>
                                     </div>
+
+                                   <label class="field">Block Lot</label>
+                                    <div class="value">
+                                        <input type="text" size="60" value="" name="BlockLot"  class="form-control" placeholder = "36 Leg St"/>
+                                    </div>
+
+                                    <label class="field">Community Board</label>
+                                    <div class="value">
+                                        <input type="text" size="60" value="" name="CommunityBoard"  class="form-control" placeholder = "36 Leg St"/>
+                                    </div>
                                     
                                     <label class="field">Postal Code</label>
                                     <div class="value">
                                         <input type="text" size="60" value="" name="PostalCode"  class="form-control" placeholder = "11021"/>
                                     </div>
+
+
                                 </div>
                                 <input type="submit" value="Save" id="save" name="save" class="btn btn-primary"/> </div>
                             </fieldset>
-                        </form>
+                        </form>';
+                        ?>
                     </section>
                 </div>
             </div>

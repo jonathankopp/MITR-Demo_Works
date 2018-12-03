@@ -27,7 +27,6 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="index.php">Home</a></li>
                 <li><a href="Search.php">Search</a></li>
-                <li><a href="addJob.php">Add Job</a></li>
                 <li><a href="AddClient.php">Add Client</a></li>
             </ul>
         </div>
@@ -64,6 +63,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
+                                 <!-- TODO:  Implement php here to dynamically edit in client info -->
                                     <?php
                                         if(!(isset($_GET['ID']))){
                                             echo "<h1>ERROR</h1>";
@@ -74,6 +74,7 @@
                                                 WHERE CustomerID='".$_GET['ID']."'");
                             
                                             $res->execute();
+                                            echo '<tr>';
                                             while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
                                                 if($row['ContactTitle']!=NULL){
                                                     $disp=$row['ContactTitle'];
@@ -88,6 +89,7 @@
                                                 echo '<td>'.$row['Email'].'</td>';
                                             }
                                             $dbh = null;
+                                            echo '</tr>';
                                         }
                                         
                                     ?>
@@ -124,21 +126,26 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- TODO:  Implement php here to dynamically load in jobs
-                                                Jobs must be clickable links to their job.php page -->
                                     <?php
+                                        $dbh = new PDO('mysql:host=localhost;dbname=Demo_Works', "root", "password");
+                                        if(isset($_POST['BlockLot'])){
+                                            echo "<script>console.log('".$_POST['BlockLot']." ".$_POST['Address']."');</script>";
+                                            $sqlInsert = "INSERT INTO jobs (`CustomerID`,`Address`,`City`,`Block Lot`,`Community Board`,`PostalCode`) VALUES(?,?,?,?,?,?)";
+                                            $submit = $dbh->prepare($sqlInsert);
+                                            $submit->execute([$_GET['ID'],$_POST['Address'],$_POST['City'],$_POST['BlockLot'],$_POST['CommunityBoard'],$_POST['PostalCode']]);
+                                        }
                                         if(!(isset($_GET['ID']))){
                                             echo "<h1>ERROR</h1>";
                                         }else{
-                                            $dbh = new PDO('mysql:host=localhost;dbname=Demo_Works', "root", "password");
                                             $res = $dbh->prepare("
                                             SELECT * FROM `jobs`
                                                 WHERE CustomerID='".$_GET['ID']."'");
                             
                                             $res->execute();
+                                           
                                             while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
                                                
-
+                                                echo '<tr>';
                                                 echo '<td> <input type="button" class="btn btn-info" value="View Job" onclick=" relocate_home('.$row['jID'].')">
                                                 </td>';
                                                 echo '<td>'.$row['Address'].'</td>';
@@ -146,7 +153,11 @@
                                                 echo '<td>'.$row['Block Lot'].'</td>';
                                                 echo '<td>'.$row['Community Board'].'</td>';
                                                 echo '<td>'.$row['PostalCode'].'</td>';
+                                                echo '</tr>';
                                             }
+                                           
+                                            echo '<input type="button" class="btn btn-primary btn-lg btn-block" value="Add Job" onclick=" relocate_addJob('.$_GET['ID'].')">';
+
                                             $dbh = null;
                                         }
                                         
@@ -204,13 +215,14 @@
                     
                                     $queryCall->execute();
                                     while ($row = $queryCall->fetch(PDO::FETCH_ASSOC)) {
-                                        echo '<td> <input type="button" class="btn btn-info" value="Add Notes" onclick=" relocate_homeTwo('.$_GET['ID'].');">
-                                                </td>';
+                                        echo '<input type="button" class="btn btn-primary btn-lg btn-block" value="Add Notes" onclick=" relocate_homeTwo('.$_GET['ID'].');">
+                                                ';
                                         $notesArr = explode("\n",$row['Notes']);
                                         for ($x = 0; $x < sizeof($notesArr); $x++) {
                                             echo "<h2>".$notesArr[$x]."</h2>";
                                             echo "<br/>";
                                         }
+                                        
 
                                     }
 
@@ -230,14 +242,15 @@
 <script src="js/jquery.hideseek.min.js" type="text/javascript"></script>
 <script src="js/main.js" type="text/javascript"></script>
 <script>
-function relocate_home(jID)
-{
+function relocate_home(jID){
      location.href = "job.php?ID="+jID;
 } 
-function relocate_homeTwo(CustomerID)
-{
+function relocate_homeTwo(CustomerID){
      location.href = "Client.php?ID="+CustomerID+"&update="+0;
 } 
+function relocate_addJob(CustomerID){
+     location.href = "addJob.php?ID="+CustomerID;
+}
 </script>
 </body>
 

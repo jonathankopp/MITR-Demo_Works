@@ -29,7 +29,6 @@
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="index.php">Home</a></li>
 						<li><a href="Search.php">Search</a></li>
-						<li><a href="addJob.php">Add Job</a></li>
 						<li><a href="AddClient.php">Add Client</a></li>
 					</ul>
 				</div>
