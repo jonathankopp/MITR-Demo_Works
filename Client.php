@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>RPI Printers</title>
+    <title>Client Info</title>
 </head>
 <body>
 
@@ -74,22 +74,23 @@
                                                 WHERE CustomerID='".$_GET['ID']."'");
                             
                                             $res->execute();
-                                            echo '<tr>';
+                                           
                                             while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
                                                 if($row['ContactTitle']!=NULL){
                                                     $disp=$row['ContactTitle'];
                                                 }else{
                                                     $disp=$row['FirstName']." ".$row['LastName'];
                                                 }
+                                                echo '<tr>';
                                                 echo '<td>'.$disp.'</td>';
                                                 echo '<td>'.$row['Address'].'</td>';
                                                 echo '<td>'.$row['City'].'</td>';
                                                 echo '<td>'.$row['PostalCode'].'</td>';
                                                 echo '<td>'.$row['Phone'].'</td>';
                                                 echo '<td>'.$row['Email'].'</td>';
+                                                echo '</tr>';
                                             }
                                             $dbh = null;
-                                            echo '</tr>';
                                         }
                                         
                                     ?>
@@ -133,6 +134,7 @@
                                             $sqlInsert = "INSERT INTO jobs (`CustomerID`,`Address`,`City`,`Block Lot`,`Community Board`,`PostalCode`) VALUES(?,?,?,?,?,?)";
                                             $submit = $dbh->prepare($sqlInsert);
                                             $submit->execute([$_GET['ID'],$_POST['Address'],$_POST['City'],$_POST['BlockLot'],$_POST['CommunityBoard'],$_POST['PostalCode']]);
+
                                         }
                                         if(!(isset($_GET['ID']))){
                                             echo "<h1>ERROR</h1>";

@@ -69,10 +69,10 @@ CREATE TABLE `jobs` (
 
 CREATE TABLE `Check_Off` (
   'jID' int(5) NOT NULL,
-  `FormType` int(5) NOT NULL,
-  `D_Req` varchar(60) DEFAULT NULL,
-  `D_Rec` varchar(60) DEFAULT NULL,
-  `Price` int(10) DEFAULT NULL
+  `FormType` varchar(60) NOT NULL,
+  `D_Req` varchar(60) NULL DEFAULT '0',
+  `D_Rec` varchar(60) NULL DEFAULT '0',
+  `Price` int(10) NULL DEFAULT '0'
 )
 --
 -- Dumping data for table `jobs`

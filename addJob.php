@@ -32,7 +32,7 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Demo Works Expediting Inc</title>
+        <title>Add Job</title>
     </head>
     <body>
         <nav class="navbar navbar-inverse">
