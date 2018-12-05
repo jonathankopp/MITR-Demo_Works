@@ -12,12 +12,12 @@ CREATE TABLE `customers` (
   PRIMARY KEY(`CustomerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `customers` (`CustomerID`, `FirstName`, `LastName`, `ContactTitle`, `Address`, `City`, `PostalCode`, `Phone`) VALUES
+INSERT INTO `customers` (`CustomerID`, `FirstName`, `LastName`, `ContactTitle`, `Address`, `City`, `PostalCode`, `Phone`,`Email`) VALUES
 (1, 'Joey', 'PEPE', NULL, '29 Cedar St', 'Syosset', 11791, 222222222,'joey.j@gmail.com');
 
 
 CREATE TABLE `jobs` (
-  'jID' int(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `jID` int(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CustomerID` int(5) NOT NULL,
   `Address` varchar(60) NOT NULL,
   `City` varchar(60) NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE `jobs` (
 
 
 CREATE TABLE `Check_Off` (
-  'jID' int(5) NOT NULL,
+  `ID` int(5) NOT NULL,
   `FormType` varchar(60) NOT NULL,
   `D_Req` varchar(60) NULL DEFAULT '0',
   `D_Rec` varchar(60) NULL DEFAULT '0',
