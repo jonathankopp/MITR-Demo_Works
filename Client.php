@@ -50,7 +50,7 @@
                         WHERE CustomerID='".$_GET['ID']."'");
     
                     $res->execute();
-                    
+
                     while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
                         if($row['ContactTitle']!=NULL){
                             $disp=$row['ContactTitle'];
@@ -79,6 +79,22 @@
                             <table class=table table-striped>
                                 <thead>
                                 <tr>
+                                    <?php
+                                        $dbh = new PDO('mysql:host=localhost;dbname=Demo_Works', "root", "password");
+                                        $res = $dbh->prepare("
+                                        SELECT `LastName`, `FirstName`,`CustomerID`,`ContactTitle`
+                                        FROM `customers`
+                                            WHERE CustomerID=".$_GET['ID']);
+                                
+                                        $res->execute();
+                                        while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                                            if($row['ContactTitle']==NULL){
+                                                echo '<th scope="col">Client Name</th>';
+                                            }else{
+                                                echo '<th scope="col">Contact Name</th>';
+                                            }
+                                        }
+                                    ?>
                                     <th scope="col">Client Name</th>
                                     <th scope="col">Address</th>
                                     <th scope="col">City</th>
@@ -102,11 +118,7 @@
                                             $res->execute();
                                            
                                             while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                                if($row['ContactTitle']!=NULL){
-                                                    $disp=$row['ContactTitle'];
-                                                }else{
-                                                    $disp=$row['FirstName']." ".$row['LastName'];
-                                                }
+                                                $disp=$row['FirstName']." ".$row['LastName'];
                                                 echo '<tr>';
                                                 echo '<td>'.$disp.'</td>';
                                                 echo '<td>'.$row['Address'].'</td>';

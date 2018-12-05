@@ -44,13 +44,17 @@
 						try {
 							$dbh = new PDO('mysql:host=localhost;dbname=Demo_Works', "root", "password");
 							$res = $dbh->prepare("
-							SELECT `LastName`, `FirstName`,`CustomerID`
+							SELECT `LastName`, `FirstName`,`CustomerID`,`ContactTitle`
 							FROM `customers`
 								ORDER BY `LastName`, `FirstName` ASC");
 					
 							$res->execute();
 							while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-								echo '<h3><a href=client.php?ID='.$row['CustomerID'].'>'.$row["LastName"].', '. $row["FirstName"] .' </a></h3>';
+								if($row['ContactTitle']!=NULL){
+									echo '<h3><a href=client.php?ID='.$row['CustomerID'].'>'.$row["LastName"].', '. $row["FirstName"] .' ['.$row['ContactTitle'] .']</a></h3>';
+								}else{ 
+									echo '<h3><a href=client.php?ID='.$row['CustomerID'].'>'.$row["LastName"].', '. $row["FirstName"] .' </a></h3>';
+								}
 							}
 							$dbh = null;
 						

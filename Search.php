@@ -67,7 +67,7 @@
                             $res = $dbh->prepare("
                             SELECT `LastName`, `FirstName`,`CustomerID`
                             FROM `customers`
-                                WHERE FirstName='".$searchArray[0]."'OR LastName='".$searchArray[1]."'");
+                                WHERE FirstName='".$searchArray[0]."'OR LastName='".$searchArray[1]."'OR ContactTitle='".$_POST['SearchQuery']."'");
                     
                             $res->execute();
                             while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
