@@ -95,7 +95,6 @@
                                             }
                                         }
                                     ?>
-                                    <th scope="col">Client Name</th>
                                     <th scope="col">Address</th>
                                     <th scope="col">City</th>
                                     <th scope="col">Postal Code</th>
