@@ -25,7 +25,7 @@ CREATE TABLE `jobs` (
   `Community Board` varchar(60) NOT NULL,
   `PostalCode` int(10) NOT NULL,
   PRIMARY KEY(`jID`)
-) 
+);
 
 
 CREATE TABLE `Check_Off` (
@@ -34,7 +34,7 @@ CREATE TABLE `Check_Off` (
   `D_Req` varchar(60) NULL DEFAULT '0',
   `D_Rec` varchar(60) NULL DEFAULT '0',
   `Price` int(10) NULL DEFAULT '0'
-)
+);
 
 INSERT INTO `jobs` (`FirstName`, `LastName`, `Address`, `City`, `PostalCode`, `PGL Insurance WC/Liab/Dis Ins`, `Rodent Control Letter`, `Gas Cut Off boolean`, `Water/Sewer Cut Off`, `SRO Intake Form`, `10 Day Notice Letter`, `Community Board Notice`, `Asbestos Report ACP5/AP21`, `Photographs`, `Landmark Letter`, `PW-1 Application`, `PW-2 App. Demo/Fence`, `Blank Check DOB Filing/Perimit`, `TR1/DS1 from Engineer`, `Tax Map`, `Fence Filing`, `CustomerID`) VALUES
 ('Joey', 'PEPE', '29 Cedar St', 'Syosset', 11791, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
