@@ -185,7 +185,7 @@
                                             while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
                                                
                                                 echo '<tr>';
-                                                echo '<td> <input type="button" class="btn btn-info" value="View Job" onclick=" relocate_home('.$row['jID'].')">
+                                                echo '<td> <input type="button" class="btn btn-info" value="View Job" onclick=" relocate_home('.$row['jID'].', '.$_GET['ID'].')">
                                                 </td>';
                                                 echo '<td>'.$row['Address'].'</td>';
                                                 echo '<td>'.$row['City'].'</td>';
@@ -281,8 +281,8 @@
 <script src="js/jquery.hideseek.min.js" type="text/javascript"></script>
 <script src="js/main.js" type="text/javascript"></script>
 <script>
-function relocate_home(jID){
-     location.href = "job.php?ID="+jID;
+function relocate_home(jID,cID){
+     location.href = "job.php?ID="+jID+"&cID="+cID;
 } 
 function relocate_homeTwo(CustomerID){
      location.href = "Client.php?ID="+CustomerID+"&update="+0;
