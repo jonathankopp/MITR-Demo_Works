@@ -187,7 +187,7 @@
                                                     echo '<td>'.$row['FormType'].'</td>';
                                                     echo '<td>'.$row['D_Req'].'</td>';
                                                     echo '<td>'.$row['D_Rec'].'</td>';
-                                                    echo '<td>'.$row['Price'].'</td>';
+                                                    echo '<td>$'.$row['Price'].'</td>';
                                                     echo '</tr>';
                                                     $price+=$row['Price'];
                                                 }
