@@ -31,8 +31,8 @@ CREATE TABLE `jobs` (
 CREATE TABLE `Check_Off` (
   `ID` int(5) NOT NULL,
   `FormType` varchar(60) NOT NULL,
-  `D_Req` varchar(60) NULL DEFAULT '0',
-  `D_Rec` varchar(60) NULL DEFAULT '0',
-  `Price` int(10) NULL DEFAULT '0'
+  `D_Req` varchar(60) NULL DEFAULT 'N/A',
+  `D_Rec` varchar(60) NULL DEFAULT 'N/A',
+  `Price` float(10) NULL DEFAULT '0'
 );
 

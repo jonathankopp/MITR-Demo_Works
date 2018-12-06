@@ -5,12 +5,13 @@
         $dbh = new PDO('mysql:host=localhost;dbname=Demo_Works', "root", "password");
         $res = $dbh->prepare("
         SELECT * FROM `Check_Off`
-            WHERE jID='".$_GET['ID']."'");
+            WHERE ID='".$_GET['ID']."'");
 
         $res->execute();
         if($res->rowCount()==0){
+            // echo"<script>console.log('asdfas');</script>";  
             //Add all forms under this id
-            $statement = "INSERT INTO `Check_Off` (`jID`, `FormType`) VALUES
+            $statement = "INSERT INTO `Check_Off` (`ID`, `FormType`) VALUES
             (?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?)";
             $submit = $dbh->prepare($statement);
             $submit->execute(
@@ -47,22 +48,22 @@
                 $need = str_replace("_"," ",$need);
                 if($i==0){
                     //Date Req
-                    $dateReqQ = 'UPDATE `Check_Off` SET `D_Req` ="'. $value .'" WHERE `FormType`= "'.$need.'" AND `jID`='.$_GET['ID'].';';
+                    $dateReqQ = 'UPDATE `Check_Off` SET `D_Req` ="'. $value .'" WHERE `FormType`= "'.$need.'" AND `ID`='.$_GET['ID'].';';
 					$dateReqCall = $dbh->prepare($dateReqQ);
 					$dateReqCall->execute();
-                    echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
+                    // echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
                 }else if($i==1){
                     //Date Rec
-                    $dateRecQ = 'UPDATE `Check_Off` SET `D_Rec` ="'. $value .'" WHERE `FormType`= "'.$need.'" AND `jID`='.$_GET['ID'].';';
+                    $dateRecQ = 'UPDATE `Check_Off` SET `D_Rec` ="'. $value .'" WHERE `FormType`= "'.$need.'" AND `ID`='.$_GET['ID'].';';
 					$dateRecCall = $dbh->prepare($dateRecQ);
 					$dateRecCall->execute();
-                    echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
+                    // echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
                 }else{
                     //Price
-                    $priceQ = 'UPDATE `Check_Off` SET `Price` ="'. $value .'" WHERE `FormType`= "'.$need.'" AND `jID`='.$_GET['ID'].';';
+                    $priceQ = 'UPDATE `Check_Off` SET `Price` ="'. $value .'" WHERE `FormType`= "'.$need.'" AND `ID`='.$_GET['ID'].';';
 					$priceCall = $dbh->prepare($priceQ);
 					$priceCall->execute();
-                    echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
+                    // echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
                     $i=-1;
                 }
                 $i++;
@@ -155,7 +156,7 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">Form Type</th>
-                                    <th scope="col">Date Required</th>
+                                    <th scope="col">Date Requsted</th>
                                     <th scope="col">Date Recieved</th>
                                     <th scope="col">Price</th>
                                 </tr>
@@ -173,7 +174,7 @@
                                             $dbh = new PDO('mysql:host=localhost;dbname=Demo_Works', "root", "password");
                                             $res = $dbh->prepare("
                                             SELECT * FROM `Check_Off`
-                                                WHERE jID='".$_GET['ID']."'");
+                                                WHERE ID='".$_GET['ID']."'");
                             
                                             $res->execute();
                                             
@@ -194,7 +195,7 @@
                                                 echo '<td><strong>FINAL PRICE:</strong></td>';
                                                 echo '<td></td>';
                                                 echo '<td></td>';
-                                                echo '<td><strong><i>'.$price.'</i></strong></td>';
+                                                echo '<td><strong><i>$'.$price.'</i></strong></td>';
                                                 echo '</tr>';
                                             }else{
                                                 $output='<form name="update" action="job.php?ID='.$_GET['ID'].'&cID='.$_GET['cID'].'" method="POST">
@@ -203,7 +204,7 @@
                                                 <thead>
                                                 <tr>
                                                     <th scope="col">Form Type</th>
-                                                    <th scope="col">Date Required</th>
+                                                    <th scope="col">Date Requested</th>
                                                     <th scope="col">Date Recieved</th>
                                                     <th scope="col">Price</th>
                                                 </tr>
