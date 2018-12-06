@@ -61,8 +61,8 @@
 						
 						<h1>All Clients</h1>
 						<form id="myform" method="post">
-							<select name = 'Alpha' style = 'position: relative' onchange="change()">
-								<option value="0">Select</option>
+							<select  name = 'Alpha' style = 'position: relative' onchange="change()">
+								<option value="0">Filter</option>
 								<option value="1">All</option>
 								<option value="A">A</option>
 								<option value="B">B</option>
