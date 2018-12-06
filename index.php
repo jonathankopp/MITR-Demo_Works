@@ -2,6 +2,24 @@
 	session_start();
 ?>
 
+<?php
+	$dbh = new PDO('mysql:host=localhost;dbname=Demo_Works', "root", "password");
+	if(isset($_POST['FirstName'])){
+		// echo "<script>console.log('".$_POST['FirstName']."');</script>";
+		if(trim($_POST['CompanyName'])==NULL){
+			$sqlInsert = "INSERT INTO customers (`FirstName`,`LastName`,`Address`,`City`,`PostalCode`,`Phone`,`Email`) VALUES(?,?,?,?,?,?,?)";
+			$submit = $dbh->prepare($sqlInsert);
+			$submit->execute([$_POST['FirstName'],$_POST['LastName'],$_POST['Address'],$_POST['City'],$_POST['PostalCode'],$_POST['ContactNum'],$_POST['ContactEmail']]);
+
+		}else{
+			$sqlInsert = "INSERT INTO customers (`FirstName`,`LastName`,`ContactTitle`,`Address`,`City`,`PostalCode`,`Phone`,`Email`) VALUES(?,?,?,?,?,?,?,?)";
+			$submit = $dbh->prepare($sqlInsert);
+			$submit->execute([$_POST['FirstName'],$_POST['LastName'],$_POST['CompanyName'],$_POST['Address'],$_POST['City'],$_POST['PostalCode'],$_POST['ContactNum'],$_POST['ContactEmail']]);
+		}
+		
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 	<link rel="stylesheet" href="bootstrap.css">

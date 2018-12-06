@@ -12,14 +12,12 @@
             // echo"<script>console.log('asdfas');</script>";  
             //Add all forms under this id
             $statement = "INSERT INTO `Check_Off` (`ID`, `FormType`) VALUES
-            (?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?)";
+            (?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?),(?,?)";
             $submit = $dbh->prepare($statement);
             $submit->execute(
 
                             [
                                 $_GET['ID'],"PGL Insurance WC/Liab/Dis Ins",
-                                $_GET['ID'],"Rodent Control Letter",
-                                $_GET['ID'],"Gas Cut Off",
                                 $_GET['ID'],"Rodent Control Letter",
                                 $_GET['ID'],"Gas Cut Off",
                                 $_GET['ID'],"Water/Sewer Cut Off",
@@ -40,7 +38,7 @@
             
         }
         //Display all forms with button for editing.
-        if(isset($_POST['updateCheck'])){
+        if(isset($_POST['updateCheck']) or isset($_POST['Save']) or isset($_POST['eCheck'])   ){
             //push to database
             $i=0;
             foreach ($_POST as $key => $value){  
@@ -51,19 +49,19 @@
                     $dateReqQ = 'UPDATE `Check_Off` SET `D_Req` ="'. $value .'" WHERE `FormType`= "'.$need.'" AND `ID`='.$_GET['ID'].';';
 					$dateReqCall = $dbh->prepare($dateReqQ);
 					$dateReqCall->execute();
-                    // echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
+                    echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
                 }else if($i==1){
                     //Date Rec
                     $dateRecQ = 'UPDATE `Check_Off` SET `D_Rec` ="'. $value .'" WHERE `FormType`= "'.$need.'" AND `ID`='.$_GET['ID'].';';
 					$dateRecCall = $dbh->prepare($dateRecQ);
 					$dateRecCall->execute();
-                    // echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
+                    echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
                 }else{
                     //Price
                     $priceQ = 'UPDATE `Check_Off` SET `Price` ="'. $value .'" WHERE `FormType`= "'.$need.'" AND `ID`='.$_GET['ID'].';';
 					$priceCall = $dbh->prepare($priceQ);
 					$priceCall->execute();
-                    // echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
+                    echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
                     $i=-1;
                 }
                 $i++;
@@ -143,7 +141,7 @@
                 <div class="card"> 
                         <div class="card-header" id="headingCheckOff">
                             <h4>
-                                <button class="btn btn-link" data-toggle="collapse" data-target="#checkOff" aria-expanded="true" aria-controls="checkOff">
+                                <button class="btn btn-link" id="but" data-toggle="collapse" data-target="#checkOff" aria-expanded="true" aria-controls="checkOff">
                                     Check Off
                                 </button>
                             </h4>
@@ -198,6 +196,8 @@
                                                 echo '<td><strong><i>$'.$price.'</i></strong></td>';
                                                 echo '</tr>';
                                             }else{
+                                                
+
                                                 $output='<form name="update" action="job.php?ID='.$_GET['ID'].'&cID='.$_GET['cID'].'" method="POST">
                                                 <fieldset><legend>Edit Checklist</legend><div class="formData">
                                                 <table class="table table-striped">
@@ -215,8 +215,8 @@
                                                     $output.='
                                                         <tr>
                                                         <td><label class="field">'.$row['FormType'].'</label></td>
-                                                        <td><input type="text" size="60" value="'.$row['D_Req'].'" name="D_Req'.$row['FormType'].'"  class="form-control" placeholder = "'.$row['D_Req'].'"/></td>
-                                                        <td><input type="text" size="60" value="'.$row['D_Rec'].'" name="D_Rec'.$row['FormType'].'"  class="form-control" placeholder = "'.$row['D_Rec'].'"/></td>
+                                                        <td><input type="date" size="60" value="'.$row['D_Req'].'" name="D_Req'.$row['FormType'].'"  class="form-control" placeholder = "'.$row['D_Req'].'"/></td>
+                                                        <td><input type="date" size="60" value="'.$row['D_Rec'].'" name="D_Rec'.$row['FormType'].'"  class="form-control" placeholder = "'.$row['D_Rec'].'"/></td>
                                                         <td><input type="text" size="60" value="'.$row['Price'].'" name="Price'.$row['FormType'].'"  class="form-control" placeholder = "'.$row['Price'].'"/></td>
                                                         </tr>
                                                     ';
@@ -249,11 +249,17 @@
 <script src="js/jquery.hideseek.min.js" type="text/javascript"></script>
 <script src="js/main.js" type="text/javascript"></script>
 <script>
+$(document).ready(function(){
+    $("#but").click();
+});
 function relocate_home(jID){
      location.href = "job.php?ID="+jID;
 } 
 function relocate_homeTwo(CustomerID){
      location.href = "Client.php?ID="+CustomerID+"&update="+0;
+} 
+function relocate_homeThree(CustomerID){
+     location.href = "job.php?ID="+CustomerID+"&update="+0;
 } 
 function relocate_addJob(CustomerID){
      location.href = "addJob.php?ID="+CustomerID;
@@ -263,6 +269,10 @@ function relocate_addJob(CustomerID){
 }
 function editChecklist(jID,cID){
     location.href = "job.php?ID="+jID+"&update="+0+"&cID="+cID;
+}
+function openBar(){
+    console.log("Adfafd");
+    document.getElementById("but").click();
 }
 </script>
 </body>

@@ -43,38 +43,55 @@
                     <section>
                         <?php
                         echo '
-                        <form name="Add_Job" action="Client.php?ID='.$_GET['ID'].'" method="POST">
+                        <form name="Add_Client" action="index.php" method="POST">
                             <fieldset> 
-                                <legend>Add Job</legend>
+                                <legend>Add Client</legend>
                                 <div class="formData">
+
+
+                                    <label class="field">First Name (contact)</label>
+                                    <div class="value">
+                                        <input type="text" size="60" value="" name="FirstName"  class="form-control" placeholder = "Matt"/>
+                                    </div>
+
+                                    <label class="field">Last Name (contact)</label>
+                                    <div class="value">
+                                        <input type="text" size="60" value="" name="LastName"  class="form-control" placeholder = "Grill"/>
+                                    </div>
+
+                                   <label class="field">Company Name (if applies)</label>
+                                    <div class="value">
+                                        <input type="text" size="60" value="" name="CompanyName"  class="form-control" placeholder = "DemoWorks Expediting Inc"/>
+                                    </div>
+
                                     <label class="field">Address</label>
                                     <div class="value">
-                                        <input type="text" size="60" value="" name="Address"  class="form-control" placeholder = "36 Leg St"/>
+                                        <input type="text" size="60" value="" name="Address"  class="form-control" placeholder = "1501 Sage Ave"/>
                                     </div>
 
                                     <label class="field">City</label>
                                     <div class="value">
-                                        <input type="text" size="60" value="" name="City"  class="form-control" placeholder = "Great Neck"/>
+                                        <input type="text" size="60" value="" name="City"  class="form-control" placeholder = "1501 Sage Ave"/>
                                     </div>
 
-                                   <label class="field">Block Lot</label>
-                                    <div class="value">
-                                        <input type="text" size="60" value="" name="BlockLot"  class="form-control" placeholder = "36 Leg St"/>
-                                    </div>
-
-                                    <label class="field">Community Board</label>
-                                    <div class="value">
-                                        <input type="text" size="60" value="" name="CommunityBoard"  class="form-control" placeholder = "36 Leg St"/>
-                                    </div>
-                                    
                                     <label class="field">Postal Code</label>
                                     <div class="value">
                                         <input type="text" size="60" value="" name="PostalCode"  class="form-control" placeholder = "11021"/>
                                     </div>
+                                    
+                                    <label class="field">Contact Number</label>
+                                    <div class="value">
+                                        <input type="text" size="60" value="" name="ContactNum"  class="form-control" placeholder = "5168508576"/>
+                                    </div>
+
+                                    <label class="field">Contact Email</label>
+                                    <div class="value">
+                                        <input type="text" size="60" value="" name="ContactEmail"  class="form-control" placeholder = "example@gmail.com"/>
+                                    </div>
 
 
                                 </div>
-                                <input type="submit" value="Save" id="save" name="save" class="btn btn-primary"/> </div>
+                                <input type="submit" value="Add Client" id="save" name="AddClient" class="btn btn-primary"/> </div>
                             </fieldset>
                         </form>';
                         ?>

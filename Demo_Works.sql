@@ -6,9 +6,9 @@ CREATE TABLE `customers` (
   `Address` varchar(60) NOT NULL,
   `City` varchar(15) NOT NULL,
   `PostalCode` int(5) NOT NULL,
-  `Phone` int(11) NOT NULL,
+  `Phone` int(60) NOT NULL,
   `Email` varchar(20) DEFAULT NULL,
-  `Notes` varchar(180) DEFAULT NULL,
+  `Notes` varchar(100) DEFAULT '',
   PRIMARY KEY(`CustomerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
