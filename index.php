@@ -57,22 +57,72 @@
 			<div class="row">
 				<div class="text-center">
 				
-					<h1>All clients</h1>
+				
+						
+						<h1>All Clients</h1>
+						<form id="myform" method="post">
+							<select name = 'Alpha' style = 'position: relative' onchange="change()">
+								<option value="0">Select</option>
+								<option value="1">All</option>
+								<option value="A">A</option>
+								<option value="B">B</option>
+								<option value="C">C</option>
+								<option value="D">D</option>
+								<option value="E">E</option>
+								<option value="F">F</option>
+								<option value="G">G</option>
+								<option value="H">H</option>
+								<option value="I">I</option>
+								<option value="J">J</option>
+								<option value="K">K</option>
+								<option value="L">L</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="O">O</option>
+								<option value="P">P</option>
+								<option value="Q">Q</option>
+								<option value="R">R</option>
+								<option value="S">S</option>
+								<option value="T">T</option>
+								<option value="U">U</option>
+								<option value="V">V</option>
+								<option value="W">W</option>
+								<option value="X">X</option>
+								<option value="Y">Y</option>
+								<option value="Z">Z</option>
+							</select>
+						</form>
+						
+
 					<?php
 						try {
 							$dbh = new PDO('mysql:host=localhost;dbname=Demo_Works', "root", "password");
-							$res = $dbh->prepare("
-							SELECT `LastName`, `FirstName`,`CustomerID`,`ContactTitle`
-							FROM `customers`
-								ORDER BY `LastName`, `FirstName` ASC");
+							if(isset($_POST['Alpha']) and $_POST['Alpha']!="1"){
+								$res = $dbh->prepare("
+								SELECT `LastName`, `FirstName`,`CustomerID`,`ContactTitle`
+								FROM `customers`
+									WHERE  `LastName` LIKE'".$_POST['Alpha']."%'");
+
+							}else{
+								$res = $dbh->prepare("
+								SELECT `LastName`, `FirstName`,`CustomerID`,`ContactTitle`
+								FROM `customers`
+									ORDER BY `LastName`, `FirstName` ASC");
+							}
+							
 					
 							$res->execute();
+							$isRows = false;
 							while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+								$isRows=true;
 								if($row['ContactTitle']!=NULL){
 									echo '<h3><a href=client.php?ID='.$row['CustomerID'].'>'.$row["LastName"].', '. $row["FirstName"] .' ['.$row['ContactTitle'] .']</a></h3>';
 								}else{ 
 									echo '<h3><a href=client.php?ID='.$row['CustomerID'].'>'.$row["LastName"].', '. $row["FirstName"] .' </a></h3>';
 								}
+							}
+							if(!$isRows){
+								echo"<h3 href='#'>No Results</h3>";
 							}
 							$dbh = null;
 						
@@ -90,4 +140,9 @@
 	<script src="js/bootstrap.js" type="text/javascript"></script>
 	<script src="js/jquery.hideseek.min.js" type="text/javascript"></script>
 	<script src="js/main.js" type="text/javascript"></script>
+	<script>
+		function change(){
+			document.getElementById("myform").submit();
+		}
+	</script>		
 </html>
