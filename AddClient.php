@@ -71,7 +71,7 @@
 
                                     <label class="field">City</label>
                                     <div class="value">
-                                        <input type="text" size="60" value="" name="City"  class="form-control" placeholder = "1501 Sage Ave"/>
+                                        <input type="text" size="60" value="" name="City"  class="form-control" placeholder = "Troy"/>
                                     </div>
 
                                     <label class="field">Postal Code</label>
