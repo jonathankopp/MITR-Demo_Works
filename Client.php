@@ -167,10 +167,17 @@
                                     <?php
                                         $dbh = new PDO('mysql:host=localhost;dbname=Demo_Works', "root", "password");
                                         if(isset($_POST['BlockLot'])){
-                                            echo "<script>console.log('".$_POST['BlockLot']." ".$_POST['Address']."');</script>";
+                                            // echo "<script>console.log('".$_POST['BlockLot']." ".$_POST['Address']."');</script>";
+                                            $cId=htmlspecialchars($_GET['ID']);
+                                            $address=htmlspecialchars($_POST['Address']);
+                                            $city=htmlspecialchars($_POST['City']);
+                                            $blockLot=htmlspecialchars($_POST['BlockLot']);
+                                            $community=htmlspecialchars($_POST['CommunityBoard']);
+                                            $postalC=htmlspecialchars($_POST['PostalCode']);
+
                                             $sqlInsert = "INSERT INTO jobs (`CustomerID`,`Address`,`City`,`Block Lot`,`Community Board`,`PostalCode`) VALUES(?,?,?,?,?,?)";
                                             $submit = $dbh->prepare($sqlInsert);
-                                            $submit->execute([$_GET['ID'],$_POST['Address'],$_POST['City'],$_POST['BlockLot'],$_POST['CommunityBoard'],$_POST['PostalCode']]);
+                                            $submit->execute([$cId,$address,$city,$blockLot,$community,$postalC]);
 
                                         }
                                         if(!(isset($_GET['ID']))){

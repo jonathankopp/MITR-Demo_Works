@@ -41,27 +41,29 @@
         if(isset($_POST['updateCheck']) or isset($_POST['Save']) or isset($_POST['eCheck'])   ){
             //push to database
             $i=0;
-            foreach ($_POST as $key => $value){  
+            $id=$_GET['ID'];
+            foreach ($_POST as $key => $valueS){  
                 $need = substr($key, 5);
                 $need = str_replace("_"," ",$need);
+                $value=htmlspecialchars($valueS);
                 if($i==0){
                     //Date Req
-                    $dateReqQ = 'UPDATE `Check_Off` SET `D_Req` ="'. $value .'" WHERE `FormType`= "'.$need.'" AND `ID`='.$_GET['ID'].';';
+                    $dateReqQ = 'UPDATE `Check_Off` SET `D_Req` ="'. $value .'" WHERE `FormType`= "'.$need.'" AND `ID`='.$id.';';
 					$dateReqCall = $dbh->prepare($dateReqQ);
 					$dateReqCall->execute();
-                    echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
+                    // echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
                 }else if($i==1){
                     //Date Rec
-                    $dateRecQ = 'UPDATE `Check_Off` SET `D_Rec` ="'. $value .'" WHERE `FormType`= "'.$need.'" AND `ID`='.$_GET['ID'].';';
+                    $dateRecQ = 'UPDATE `Check_Off` SET `D_Rec` ="'. $value .'" WHERE `FormType`= "'.$need.'" AND `ID`='.$id.';';
 					$dateRecCall = $dbh->prepare($dateRecQ);
 					$dateRecCall->execute();
-                    echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
+                    // echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
                 }else{
                     //Price
-                    $priceQ = 'UPDATE `Check_Off` SET `Price` ="'. $value .'" WHERE `FormType`= "'.$need.'" AND `ID`='.$_GET['ID'].';';
+                    $priceQ = 'UPDATE `Check_Off` SET `Price` ="'. $value .'" WHERE `FormType`= "'.$need.'" AND `ID`='.$id.';';
 					$priceCall = $dbh->prepare($priceQ);
 					$priceCall->execute();
-                    echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
+                    // echo"<script>console.log('".$need.', '.$value.', '.$i."');</script>";  
                     $i=-1;
                 }
                 $i++;

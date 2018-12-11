@@ -59,7 +59,8 @@
                 //TODO: IMPLEMENT SEARCH ALGO
                 if(isset($_POST['SearchQuery'])){
                     //IMPLEMENT SEARCH ALGORITHIM
-                    $searchArray = explode(" ",$_POST['SearchQuery']);
+                    $searchQ=htmlspecialchars($_POST['SearchQuery']);
+                    $searchArray = explode(" ",$searchQ);
                     try {
                         $dbh = new PDO('mysql:host=localhost;dbname=Demo_Works', "root", "password");
                         if(sizeof($searchArray)==2){
@@ -67,7 +68,7 @@
                             $res = $dbh->prepare("
                             SELECT `LastName`, `FirstName`,`CustomerID`
                             FROM `customers`
-                                WHERE FirstName='".$searchArray[0]."'OR LastName='".$searchArray[1]."'OR ContactTitle='".$_POST['SearchQuery']."'");
+                                WHERE FirstName='".$searchArray[0]."'OR LastName='".$searchArray[1]."'OR ContactTitle='".$searchQ."'");
                     
                             $res->execute();
                             while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
@@ -82,7 +83,7 @@
                             //DOESNT WORK
                             $res = $dbh->prepare("
                             SELECT customers.CustomerID, customers.`FirstName`, customers.`LastName` FROM customers INNER JOIN jobs on customers.CustomerID = jobs.CustomerID WHERE
-                                Address='".$_POST['SearchQuery']."'");
+                                Address='".$searchQ."'");
                            
 
                             $res->execute();
@@ -96,7 +97,7 @@
                             $res = $dbh->prepare("
                             SELECT `LastName`, `FirstName`,`CustomerID`
                             FROM `customers`
-                                WHERE FirstName='".$searchArray[0]."' OR LastName='".$searchArray[0]."'");
+                                WHERE FirstName='".$searchArray[0]."' OR LastName='".$searchArray[0]."' OR ContactTitle ='".$searchQ."'");
                     
                             $res->execute();
                             while ($row = $res->fetch(PDO::FETCH_ASSOC)) {

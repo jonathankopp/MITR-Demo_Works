@@ -1,27 +1,7 @@
 <?php 
 	session_start();
 ?>
-<?php
-		$dbOk = false;
 
-		//connects to the database
-		@ $db =  new mysqli('localhost', 'root', 'password', 'Demo_Works');
-
-		//error if connection fails
-		if ($db->connect_error) {
-	    echo '<div class="messages">Could not connect to the database. Error: ';
-	    echo $db->connect_errno . ' - ' . $db->connect_error . '</div>';
-	  } else {
-	    $dbOk = true; 
-	  }
-
-	  $errors = '';
-
-      //Have New Job
-	  if (isset($_POST['save'])) {
-          //add the new job into database
-      }
-	?>
 
 <!DOCTYPE html>
 <html>

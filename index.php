@@ -5,16 +5,25 @@
 <?php
 	$dbh = new PDO('mysql:host=localhost;dbname=Demo_Works', "root", "password");
 	if(isset($_POST['FirstName'])){
+		$fname=htmlspecialchars($_POST['FirstName']);
+		$lname=htmlspecialchars($_POST['LastName']);
+		$add=htmlspecialchars($_POST['Address']);
+		$city=htmlspecialchars($_POST['City']);
+		$pcode=htmlspecialchars($_POST['PostalCode']);
+		$contactN=htmlspecialchars($_POST['ContactNum']);
+		$contactE=htmlspecialchars($_POST['ContactEmail']);
+		$companyName=htmlspecialchars($_POST['CompanyName']);
+
 		// echo "<script>console.log('".$_POST['FirstName']."');</script>";
 		if(trim($_POST['CompanyName'])==NULL){
 			$sqlInsert = "INSERT INTO customers (`FirstName`,`LastName`,`Address`,`City`,`PostalCode`,`Phone`,`Email`) VALUES(?,?,?,?,?,?,?)";
 			$submit = $dbh->prepare($sqlInsert);
-			$submit->execute([$_POST['FirstName'],$_POST['LastName'],$_POST['Address'],$_POST['City'],$_POST['PostalCode'],$_POST['ContactNum'],$_POST['ContactEmail']]);
+			$submit->execute([$fname,$lname,$add,$city,$pcode,$contactN,$contactE]);
 
 		}else{
 			$sqlInsert = "INSERT INTO customers (`FirstName`,`LastName`,`ContactTitle`,`Address`,`City`,`PostalCode`,`Phone`,`Email`) VALUES(?,?,?,?,?,?,?,?)";
 			$submit = $dbh->prepare($sqlInsert);
-			$submit->execute([$_POST['FirstName'],$_POST['LastName'],$_POST['CompanyName'],$_POST['Address'],$_POST['City'],$_POST['PostalCode'],$_POST['ContactNum'],$_POST['ContactEmail']]);
+			$submit->execute([$fname,$lname,$companyName,$add,$city,$pcode,$contactN,$contactE]);
 		}
 		
 	}
